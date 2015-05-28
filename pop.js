@@ -1,26 +1,50 @@
 $(document).ready(function(){
-		
-		$(".small").hover(function(){
-			var t = $(this).offset().top;
-			var l = $(this).offset().left;
-			$("#tooltip").html($(this).html()).css({top:t,left:l});
-			setTimeout(function(){
+		var Ctarget = document.querySelector(".color-list");
+		Ctarget.addEventListener("click", function(e){   
+		    //console.log(e.target.innerHTML);
+		    //console.log(e.target);
+		    var Node = e.target;
+		    var range = document.createRange(); 
+		    range.selectNode(Node); 
+		    window.getSelection().addRange(range); 
+		    //console.log(Node);
+		    //console.log(range);
+		    try {  
+			    var successful = document.execCommand('copy');  
+			    var msg = successful ? 'successful' : 'unsuccessful';  
+			    //console.log('Copy ' + msg);  
+			    var t = $(e.target).offset().top;
+				var l = $(e.target).offset().left - 15;
+				if (l == 9) {
+					var l = 29
+				}
+				if (l == 225) {
+					var l = 195
+				}
+				if (l == 201) {
+					var l = 190
+				}
+				
+				$("#tooltip").html(e.target.innerHTML + ' copied').css({top:t,left:l-4});
 				$("#tooltip").fadeIn();
-			}, 300);
+				//console.log(t);
+				//console.log(l);
+				setTimeout(function(){
+					$("#tooltip").fadeOut();
+				}, 1000);
+		  	} 
+		  	catch(err) {  
+		    	
+		 	}  
+			
+			window.getSelection().removeAllRanges(); 
 		});
 
+		
+		
 
 
-		$("#tooltip").mouseenter(function(){
-		    clearTimeout($(this).data('timeoutId'));
-		 
-			}).mouseleave(function(){
-		    var someElement = $(this),
-		        timeoutId = setTimeout(function(){
-		            $("#tooltip").hide();
-		        }, 600);
-		    someElement.data('timeoutId', timeoutId); 
-		});
+
 
 		$('.wsk-shadow--z1').hover(function(){
 			$('.wsk-shadow--z1 span').hide().html("box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12), <br /> 0 1px 1px 0 rgba(0,0,0,.24);").fadeIn(150);
@@ -50,7 +74,7 @@ $(document).ready(function(){
 		});
 
 		$('.wsk-shadow--z4').hover(function(){
-			$('.wsk-shadow--z4 span').hide().html("box-shadow: 0 14px 14px 0 rgba(0,0,0,.25), <br /> 0 10px 5px 0 rgba(0,0,0,.22);").fadeIn(150);
+			$('.wsk-shadow--z4 span').hide().html("box-shadow: 0 14px 14px 0 rgba(0,0,0,.25), 0 10px 5px 0 rgba(0,0,0,.22);").fadeIn(150);
 			$(this).addClass('shadow-box-css');
 		});
 		$('.wsk-shadow--z4').mouseleave(function(){
@@ -67,5 +91,61 @@ $(document).ready(function(){
 			$(this).removeClass('shadow-box-css');
 		});
 		
+
+
+
+
+		var Starget = document.querySelector(".shadow-list");
+		Starget.addEventListener("click", function(e){   
+		    //console.log(e.target.innerHTML);
+		    //console.log(e.target);
+		    var Node = e.target;
+		    var range = document.createRange(); 
+		    range.selectNode(Node); 
+		    window.getSelection().addRange(range); 
+		    console.log(Node);
+		   
+
+
+		    try {  
+			    var successful = document.execCommand('copy');  
+			    var msg = successful ? 'successful' : 'unsuccessful';  
+			    //console.log('Copy ' + msg);  
+			    var t = $(e.target).offset().top;
+				var l = 116;
+				console.log(l);
+				console.log(t);
+				if (t == 72 || t == 90) {
+					$("#tooltip-s1").fadeIn();
+			
+				};
+				if (t == 168 || t == 186) {
+					
+					$("#tooltip-s2").fadeIn();
+				};
+				if (t == 264 || t == 282) {
+				
+					$("#tooltip-s3").fadeIn();
+				};
+				if (t == 360 || t == 378) {
+					
+					$("#tooltip-s4").fadeIn();
+				};
+				if (t == 456 || t == 474) {
+					
+					$("#tooltip-s5").fadeIn();
+				};
+				//console.log(t);
+				//console.log(l);
+				setTimeout(function(){
+					$(".tooltip-s").fadeOut();
+				}, 1000);
+		  	} 
+		  	catch(err) {  
+		    	
+		 	}  
+			
+			window.getSelection().removeAllRanges(); 
+		});
 		
 });
