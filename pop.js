@@ -4,10 +4,15 @@ $(document).ready(function(){
 		    //console.log(e.target.innerHTML);
 		    //console.log(e.target);
 		    var Node = e.target;
-		    var range = document.createRange(); 
-		    range.selectNode(Node); 
-		    window.getSelection().addRange(range); 
+		    //var range = document.createRange(); 
+		    //range.selectNode(Node); 
+		    //window.getSelection().addRange(range); 
 		    //console.log(Node);
+		    selection = window.getSelection();    // Save the selection.
+			range = document.createRange();
+			range.selectNodeContents(Node);
+			selection.removeAllRanges();          // Remove all ranges from the selection.
+			selection.addRange(range);            // Add the new range.
 		    //console.log(range);
 		    try {  
 			    var successful = document.execCommand('copy');  
